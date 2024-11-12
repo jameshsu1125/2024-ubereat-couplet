@@ -1,3 +1,87 @@
 .Home {
-  @apply m-5 flex flex-col items-center justify-center space-y-5 rounded-3xl bg-slate-800 p-10;
+  width: 900px;
+  .grid {
+    display: grid;
+    margin: 0 auto;
+    max-width: 100%;
+    width: 900px;
+    counter-reset: boxes;
+
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-auto-rows: 1fr;
+    grid-auto-flow: row dense;
+    grid-gap: 10px;
+  }
+
+  .box {
+    position: relative;
+    color: rgba(255, 255, 255, 0.7);
+    counter-increment: boxes;
+    font-size: 2rem;
+    font-family: sans-serif;
+
+    &::before {
+      display: block;
+      padding-top: 50%;
+      width: 100%;
+      content: '';
+    }
+
+    &::after {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      content: counter(boxes);
+    }
+  }
+
+  .blue {
+    border: 5px solid rgba(0, 0, 0, 0.5);
+    background: #4040e7;
+  }
+
+  .red {
+    border: 5px solid rgba(0, 0, 0, 0.5);
+    background: #db3c3c;
+  }
+
+  .green {
+    border: 5px solid rgba(0, 0, 0, 0.5);
+    background: #3ddb3d;
+  }
+
+  .tall {
+    grid-column: span 1;
+    grid-row: span 2;
+  }
+
+  .wide {
+    grid-row: span 1;
+    grid-column: span 2;
+  }
+
+  .square {
+    grid-row: span 1;
+    grid-column: span 1;
+  }
+
+  .shuffleWrap {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  @media (max-width: 500px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+    .wide {
+      grid-column: span 1;
+    }
+  }
 }
